@@ -1021,9 +1021,9 @@ var AM_Game = function(){
 
 
 		admaxim_ad_experience.trackEvent('time_spent_' + createjs.Ticker.getTime());
-		admaxim_ad_experience.trackEvent('getFPS' + createjs.Ticker.getFPS());
-		admaxim_ad_experience.trackEvent('getMeasuredFPS' + createjs.Ticker.getMeasuredFPS());	
-		admaxim_ad_experience.trackEvent('getTicks' + createjs.Ticker.getMeasuredFPS());	
+		//admaxim_ad_experience.trackEvent('getFPS' + createjs.Ticker.getFPS());
+		//admaxim_ad_experience.trackEvent('getMeasuredFPS' + createjs.Ticker.getMeasuredFPS());	
+		//admaxim_ad_experience.trackEvent('getTicks' + createjs.Ticker.getMeasuredFPS());	
 	
 	}
 
@@ -1237,7 +1237,7 @@ var AM_Game = function(){
 			audioTag.addEventListener('canplaythrough',function(e){	
 				//console.log('canplaythrough');
 				audioLoaded = true;
-				admaxim_ad_experience.trackEvent('audio_enabled');
+				admaxim_ad_experience.trackEvent('audio_ready');
 				//startLevel(4000, 3500);
 				//imgLib['loading'].holder.visible = false;
 				////console.log(TRACKS);

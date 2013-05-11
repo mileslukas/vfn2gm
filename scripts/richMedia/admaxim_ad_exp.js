@@ -1345,7 +1345,7 @@ var AdMaximAdExperience = function() {
 		var pageId = (typeof pageNumber != "undefined") ? pageNumber : "1";
 
 		if (trackingEnabled){
-			console.log("TRACK - cat:" + eventCatigory + ", label:" + eventLabel + ", action:" + eventAction);
+			//console.log("TRACK - cat:" + eventCatigory + ", label:" + eventLabel + ", action:" + eventAction);
 			_gaq.push(['admaxim_tracking._trackEvent', eventCatigory, eventAction, eventLabel ]);
 
 			//http://track.admaxim.com/adtracker/track/track
