@@ -1334,23 +1334,26 @@ var AdMaximAdExperience = function() {
 
 	// ALL OTHER TRACKING BELOW
 
-	this.trackEvent = function(event_description, event_description2) {
+	this.trackEvent = function(event_description, event_description2, resource, pageNumber) {
 
 		var eventCatigory = admaxim_ad.resources.adid;
 		var customTrackTitle = (typeof trackingDic[event_description] != "undefined") ? trackingDic[event_description] : event_description;
 		var eventAction = customTrackTitle;
 		var	eventLabel = admaxim_ad.resources.adgroupid;
 		
+		var pageRId = (typeof resource != "undefined") ? resource : "1";
+		var pageId = (typeof pageNumber != "undefined") ? pageNumber : "1";
+
 		if (trackingEnabled){
-			//console.log("TRACK - cat:" + eventCatigory + ", label:" + eventLabel + ", action:" + eventAction);
+			console.log("TRACK - cat:" + eventCatigory + ", label:" + eventLabel + ", action:" + eventAction);
 			_gaq.push(['admaxim_tracking._trackEvent', eventCatigory, eventAction, eventLabel ]);
 
 			//http://track.admaxim.com/adtracker/track/track
 			var url = "http://track.admaxim.com/adtracker/track/app/event";
 			url += "?appId=" + admaxim_appid;
 			url += "&clickId=" + admaxim_clickid;
-			url += "&pageId=" + "1";
-			url += "&pageRId=" + "1";
+			url += "&pageId=" + pageId;
+			url += "&pageRId=" + pageRId;
 			url += "&eventType=" + eventAction;
 			url += "&eventData=" + "EVENT_DATA";
 

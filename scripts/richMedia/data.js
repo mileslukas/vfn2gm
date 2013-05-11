@@ -2,8 +2,8 @@ var admaxim_ad =
 {
 	"resources":
 	{
-		"adid"				: "vodafone_admaxim_simonly",
-		"adgroupid"			: "vodafone_admaxim",
+		"adid"				: "vodafone_smash_game",
+		"adgroupid"			: "vodafone_v2",
 		"showhotspots"		: "no",
 		"enabletracking"	: "yes",
 		"startingpage"		: "0",

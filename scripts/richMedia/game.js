@@ -149,8 +149,7 @@ var AM_Game = function(){
 			mycanvas = document.getElementById('demoCanvas');
 			stage = new createjs.Stage(mycanvas);
 			
-			createjs.Ticker.addListener(stage);
-			createjs.Ticker.setFPS(16);
+
 		
 			//setUpGame();
 
@@ -164,7 +163,7 @@ var AM_Game = function(){
 		}
 	}
 
-
+	var loadStartTime = 0;
 
 	function buildStartBtn(){
 		
@@ -197,16 +196,25 @@ var AM_Game = function(){
 		
 		stage.addChild(startBtnContainer);
 
+		createjs.Ticker.addListener(stage);
+		createjs.Ticker.setFPS(16);
+		//createjs.Ticker.setPaused(true);
+
+		stage.update();
+
+		admaxim_ad_experience.trackEvent('game_enabled');
 		createjs.Touch.enable(stage);
 	}
 	
 	function setUpGame(e){
 
+		loadStartTime = createjs.Ticker.getTime();
+
 		stage.removeChild(startBtnContainer);
 
 		preloadAudio(e);
 
-		admaxim_ad_experience.trackEvent('game_load_start');
+		admaxim_ad_experience.trackEvent('game_click_to_start');
 		buildPreloader();
 
 	    var preload = new createjs.LoadQueue(false);
@@ -328,6 +336,8 @@ var AM_Game = function(){
 		//console.log('allImagesLoaded');
 		gameHolder.alpha = 1;
 		admaxim_ad_experience.trackEvent('game_load_complete');
+		admaxim_ad_experience.trackEvent('load_time_' + (createjs.Ticker.getTime(true) - loadStartTime) );
+
 		buildGame();
 	}
 
@@ -522,6 +532,8 @@ var AM_Game = function(){
 
 	function setHelmetOnPhone(){
 		if (firstTouch){
+
+			admaxim_ad_experience.trackEvent('set_helment_click');
 			firstTouch = false;
 			//console.log('setHelmetOnArrow');
 			
@@ -594,6 +606,8 @@ var AM_Game = function(){
 			}
 			////console.log("evt.target.id:" + evt.target.id + ", x:" +  offsetX + ", y:" + offsetY);
 		}
+
+
 		
 	}
 
@@ -601,6 +615,8 @@ var AM_Game = function(){
 	var levelTxt;
 
 	function gameStart(){
+
+		admaxim_ad_experience.trackEvent('game_start');
 
 		imgLib['horseshoe'].regX = 214/2;
 		imgLib['horseshoe'].regY = 214;
@@ -773,6 +789,8 @@ var AM_Game = function(){
 				if (element.active){
 
 					itemHolder.removeChild(element);
+					admaxim_ad_experience.trackEvent(guysLeft + '_guys_left');
+
 					guysLeft -= 1;
 					if (guysLeft >= -1) { gameHolder.removeChild(playerArray[guysLeft+1]); }
 
@@ -781,6 +799,7 @@ var AM_Game = function(){
 						playEffect('lose');
 						gameOver();
 					} else {
+
 						//clearInterval(dropItemInterval);
 						stopDroppingItems();
 						//gameHolder.removeChild(itemHolder);
@@ -931,6 +950,11 @@ var AM_Game = function(){
 		endScore.text = score;
 		endLevel.text = levelNum;
 
+		admaxim_ad_experience.trackEvent('game_over');
+
+		admaxim_ad_experience.trackEvent('final_score_' + score);
+
+
 		createjs.Tween.get(endScorePage)
 			.to({alpha:1}, 600);
 
@@ -994,6 +1018,13 @@ var AM_Game = function(){
 		createjs.Tween.get(itemHolder)
 			.to({alpha:0}, frameEnterSpeed)
 			.call(function(){gameHolder.removeChild(itemHolder);});		
+
+
+		admaxim_ad_experience.trackEvent('time_spent_' + createjs.Ticker.getTime());
+		admaxim_ad_experience.trackEvent('getFPS' + createjs.Ticker.getFPS());
+		admaxim_ad_experience.trackEvent('getMeasuredFPS' + createjs.Ticker.getMeasuredFPS());	
+		admaxim_ad_experience.trackEvent('getTicks' + createjs.Ticker.getMeasuredFPS());	
+	
 	}
 
 
@@ -1076,7 +1107,6 @@ var AM_Game = function(){
 				var winY = 619;
 				if (offsetX < (winX + winRangeX) && offsetX > (winX - winRangeX) && offsetY < (winY + winRangeY) && offsetY > (winY - winRangeY) && !won){
 					won = true;
-					admaxim_ad_experience.trackEvent('game_over');
 					imgLib['sim'].onPress = null;
 
 					createjs.Tween.get(imgLib['txt_drag_sim'])
@@ -1207,6 +1237,7 @@ var AM_Game = function(){
 			audioTag.addEventListener('canplaythrough',function(e){	
 				//console.log('canplaythrough');
 				audioLoaded = true;
+				admaxim_ad_experience.trackEvent('audio_enabled');
 				//startLevel(4000, 3500);
 				//imgLib['loading'].holder.visible = false;
 				////console.log(TRACKS);
