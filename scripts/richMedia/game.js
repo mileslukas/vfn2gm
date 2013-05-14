@@ -17,7 +17,7 @@ var AM_Game = function(){
 
 	//var bottle_break_data = {"images": [MEDIA_PATH + "bottle_break3.png"], "frames": [[1009, 2, 266, 374, 0, -172, 0], [600, 2, 405, 382, 0, -126, -40], [1279, 2, 534, 326, 0, -100, -68], [2, 2, 594, 610, 0, 0, -50]], "animations": {"all": {"frames": [0, 0, 1, 1, 2, 2, 3, 3]}}};
 
-	var FINAL_URL = "http://shop.vodafone.com.au/mobile-specs/sony-xperia-z-black";
+	var FINAL_URL = "http://m.vodafone.hu/aktualis-ajanlatok/valts/vodafone-red?ecmp=mob_hu_red_admaxim_na_05-2013_na_mob-aaaa0065aaaa0172-aaaa0186";
 
 	var ITEM_INCREASE = 110;
 
