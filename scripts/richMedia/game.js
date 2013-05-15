@@ -69,7 +69,6 @@ var AM_Game = function(){
  		{src:MEDIA_PATH + "arrow.png", id:"arrow"},
  		{src:MEDIA_PATH + "helmet_top.png", id:"helmet_top"},
  		{src:MEDIA_PATH + "helmet_bottom.png", id:"helmet_bottom"},
- 		{src:MEDIA_PATH + "helmet_whole.png", id:"helmet_whole"},
  		{src:MEDIA_PATH + "phone.png", id:"phone"},
  		{src:MEDIA_PATH + "horseshoe.png", id:"horseshoe"},
  		{src:MEDIA_PATH + "brick.png", id:"brick"},
